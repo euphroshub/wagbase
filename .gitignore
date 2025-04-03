@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django-related
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+*.db
+
+# Wagtail-specific
+media/
+staticfiles/
+static/
+
+# Node modules (if using frontend build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+.envrc
+*.secret
+
+# Coverage reports
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+
+# Pytest and testing
+.cache/
+.pytest_cache/
+tox/
+
+# Local development settings
+local_settings.py
