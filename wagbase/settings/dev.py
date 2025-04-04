@@ -11,6 +11,8 @@ ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# Disable offline compression in development
+COMPRESS_OFFLINE = False
 
 try:
     from .local import *

@@ -1,0 +1,45 @@
+{% load static compress %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'home/scss/style.scss' %}">
+    {% endcompress %}
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="/" class="logo">Wagtail Site</a>
+                <button class="menu-toggle">Menu</button>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/styleguide/">Style Guide</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {% now "Y" %} Your Site Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    {% compress js %}
+    <script src="{% static 'home/js/utils/animations.js' %}"></script>
+    <script src="{% static 'home/js/components/navigation.js' %}"></script>
+    <script src="{% static 'home/js/modules/slider.js' %}"></script>
+    <script src="{% static 'home/js/main.js' %}"></script>
+    {% endcompress %}
+</body>
+</html> 
