@@ -1,0 +1,97 @@
+// **---------------------------------------------------**
+//  Breakpoints
+// -------------------------------------------------------
+$breakpoints: (
+    XXS: $scr-xxs,
+    XS: $scr-xs,
+    SM: $scr-sm,
+    MD: $scr-md,
+    LG: $scr-lg,
+    XLG: $scr-xlg,
+    XXLG: $scr-xxlg
+) !default;
+
+$bp-class-generation: $scr-xs - 1;
+
+// **---------------------------------------------------**
+//  Sizes
+// -------------------------------------------------------
+$list-size: (
+    'thinner',
+    'thin',
+    'normal',
+    'large',
+    'larger',
+) !default;
+
+// **---------------------------------------------------**
+//  Colors
+// -------------------------------------------------------
+$theme-colors: (
+    'primary': $primary,
+    'primary-lighter': $primary-lighter,
+    'primary-light': $primary-light,
+    'primary-dark': $primary-dark,
+    'primary-darker': $primary-darker,
+    'secondary': $secondary,
+    'secondary-lighter': $secondary-lighter,
+    'secondary-light': $secondary-light,
+    'secondary-dark': $secondary-dark,
+    'secondary-darker': $secondary-darker,
+) !default;
+
+$theme-monochromes: (
+    'white': $white,
+    'black': $black,
+    'gray-100': $gray-100,
+    'gray-200': $gray-200,
+    'gray-300': $gray-300,
+    'gray-400': $gray-400,
+    'gray-500': $gray-500,
+    'gray-600': $gray-600,
+    'gray-700': $gray-700,
+    'gray-800': $gray-800,
+    'gray-900': $gray-900,
+) !default;
+
+// **---------------------------------------------------**
+//  Vertical align
+// -------------------------------------------------------
+$list-vertical-align: (
+    top,
+    middle,
+    bottom
+) !default;
+
+// **---------------------------------------------------**
+//  Text align
+// -------------------------------------------------------
+$list-text-align: (
+    center,
+    left,
+    right
+) !default;
+
+// **---------------------------------------------------**
+//  Font-weight
+// -------------------------------------------------------
+$list-font-weight: (
+    ('200', extra-light),
+    ('300', light),
+    ('400', regular),
+    ('600', semi-bold),
+    ('700', bold),
+    ('800', extra-bold),
+    ('900', black),
+) !default;
+
+
+// **---------------------------------------------------**
+//  Direction
+// -------------------------------------------------------
+$list-direction: (
+    'top',
+    'right',
+    'bottom',
+    'left'
+) !default;

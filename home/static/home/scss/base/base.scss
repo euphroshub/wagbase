@@ -1,0 +1,428 @@
+@import '../_variables', '../_config', '../imports/mixin.scss';
+@import 'validation', 'button', 'form';
+
+// **---------------------------------------------------**
+//  Root variables
+// -------------------------------------------------------
+:root {
+	// Colors
+	@each $name, $value in $theme-colors {
+		--#{$name}: #{$value};
+	}
+	@each $name, $value in $theme-monochromes {
+		--#{$name}: #{$value};
+	}
+
+	--body-text-color: #{$body-text-color};
+	--body-link-color: #{var(--primary)};
+	--body-heading-color: #{var(--body-text-color)};
+	--body-bg-color: #{$body-bg-color};
+
+	// Typography
+	--font-base: #{$font-base};
+	--font-base-unit: #{$font-base-unit};
+	--font-line-height: #{$font-line-height};
+	
+	// Font Families
+	--font-primary: #{$font-primary};
+	--font-secondary: #{$font-secondary};
+
+	// Font Weight
+	--font-extra-light: #{$font-extra-light};
+	--font-light: #{$font-light};
+	--font-regular: #{$font-regular};
+	--font-medium: #{$font-medium};
+	--font-semi-bold: #{$font-semi-bold};
+	--font-bold: #{$font-bold};
+    --font-extra-bold: #{$font-extra-bold};
+	--font-black: #{$font-black};
+
+    // Heading
+	--h1: #{$h1};
+	--h2: #{$h2};
+	--h3: #{$h3};
+	--h4: #{$h4};
+	--h5: #{$h5};
+	--h6: #{$h6};
+
+    --heading-line-height: #{$heading-line-height};
+    --font-heading: #{$font-heading};
+	--font-heading-weight: #{$font-heading-weight};
+	--font-heading-color: #{$font-heading-color};
+
+    // Responsive heading
+	@include mediaq('>SM') {
+		--h1: 50px;
+	}
+		
+	@include mediaq('>MD') {
+		--h1: 55px;
+		--h2: 45px;
+		--h3: 35px;
+		--h4: 30px;
+		--h5: 28px;
+		--h6: 24px;
+	}
+	
+	@include mediaq('>LG') {
+		--h1: 60px;
+		--h2: 50px;
+		--nav-inner-scroll-padding: 65px;
+	}
+
+	@include mediaq('>XLG') {
+		--h1: 70px;
+		--h2: 55px;
+		--h3: 40px;
+	}
+
+    // Validation
+	--success: #{$success};
+	--warning: #{$warning};
+	--error: #{$error};
+	--info: #{$info};
+
+	// Needed global variables
+	--nav-inner-scroll-padding: 180px;
+}
+
+
+// **---------------------------------------------------**
+//  Document base style
+// -------------------------------------------------------
+html {
+	-moz-osx-font-smoothing: grayscale;
+	-ms-overflow-style: scrollbar;
+	-ms-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(var(--primary), 0.15);
+	-webkit-text-size-adjust: 100%;
+	background-color: var(--body-bg-color);
+	color: var(--body-text-color);
+	font-family: var(--font-primary);
+	font-size: var(--font-base);
+	height: 100%;
+	line-height: var(--font-line-height);
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+body {
+	background-color: var(--body-bg-color);
+	color: var(--body-text-color);
+	font-family: var(--font-primary);
+	font-size: var(--font-base);
+	height: 100%;
+	line-height: var(--font-line-height);
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+::-moz-selection {
+	background-color: var(--primary);
+	color: var(--white);
+}
+
+::selection {
+	background-color: var(--primary);
+	color: var(--white);
+}
+
+// **---------------------------------------------------**
+//  Heading
+// -------------------------------------------------------
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: var(--font-heading);
+	line-height: var(--heading-line-height);
+	font-weight: var(--font-heading-weight);
+	color: var(--font-heading-color);
+    margin-bottom: 0.5em;
+}
+
+h1, .h1 {
+	font-size: var(--h1);
+}
+
+h2, .h2 {
+	font-size: var(--h2);
+}
+
+h3, .h3 {
+	font-size: var(--h3);
+}
+
+h4, .h4 {
+	font-size: var(--h4);
+}
+
+h5, .h5 {
+	font-size: var(--h5);
+}
+
+h6, .h6 {
+	font-size: var(--h6);
+}
+
+// **---------------------------------------------------**
+//  Body elements
+// -------------------------------------------------------
+p {
+	@include fsize(16);
+	margin-bottom: 1.3em;
+}
+
+a {
+	color: var(--body-link-color);
+	font-weight: var(--font-bold);
+	text-decoration: none;
+	transition: all .35s $ease-in;
+
+	&:hover, &:active, &:focus {
+		color: var(--primary-lighter);
+		text-decoration: none;
+	}
+}
+
+ul, ol {
+	&[class] {
+		list-style: none;
+		padding: 0;
+	}
+
+	// when no class is applied (useful for styling wysiwyg ul and ol)
+	&:not([class]) {
+		padding-left: 1.5rem;
+	}
+
+	li { 
+        @include fsize(16);
+		color: var(--body-text-color);
+		margin-bottom: 0.4em;
+		padding-bottom: 0.4em;
+	}
+}
+
+svg {
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+	width: 100%;
+}
+
+picture {
+	display: block;
+	height: 100%;
+}
+
+table {
+	font-weight: var(--font-semi-bold);
+	margin-bottom: 30px;
+	width: 100%;
+
+	th {
+		@include fsize(11);
+		text-transform: uppercase;
+	}
+
+	td {
+		@include fsize(13);
+	}
+
+	th, td {
+		border: var(--gray-400);
+		padding: 10px;
+
+		&:empty {
+			background: var(--gray-400);
+		}
+	}
+}
+
+hr {
+	background: var(--gray-400);
+	border: none;
+	height: 1px;
+	margin: 2rem 0;
+}
+
+// **---------------------------------------------------**
+//  Utilities
+// -------------------------------------------------------
+.Text--center {
+    text-align: center;
+}
+
+// **---------------------------------------------------**
+//  For customer / CMS entered content
+// -------------------------------------------------------
+.Editable {
+	> * {
+		&:first-child {
+			margin-top: 0!important;
+		}
+		&:last-child {
+			margin-bottom: 0!important;
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6,
+	.h1, .h2, .h3, .h4, .h5, .h6 {
+		margin-top: 1.5em;
+		margin-bottom: 0.5em;
+	}
+
+	span {
+		display: inline-block;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+
+    a {
+        color: var(--orange-red);
+        font-weight: var(--font-regular);
+        text-decoration: underline;
+    
+        &:hover, &:active, &:focus {
+            color: var(--primary);
+        }
+    }
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+		&:not([class]) {
+			li {
+				padding-left: 30px;
+				position: relative;
+
+				&:before {
+					content:'';
+					background: var(--body-text-color);
+					position: absolute;
+					top: .9em;
+					left: 0;
+					height: 1px;
+					width: 16px;
+					transform: translateY(-50%);
+				}
+
+				&:last-child {
+					padding-bottom: 0;
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+    ol {
+		list-style: none;
+		padding: 0;
+		counter-reset: ol;
+
+		li {
+			padding-left: 40px;
+			position: relative;
+			counter-increment: ol;
+
+			&:before {
+				content: counter(ol);
+				position: absolute;
+				top: .9em;
+				left: 0;
+				@include fsize(15);
+				color: var(--body-text-color);
+				transform: translateY(-50%);
+			}
+
+            &:after {
+                content:'';
+                background: var(--body-text-color);
+                position: absolute;
+                top: .9em;
+                left: 12px;
+                height: 1px;
+                width: 16px;
+                transform: translateY(-50%);
+            }
+
+			&:last-child {
+				padding-bottom: 0;
+				margin-bottom: 0;
+			}
+		}
+    }
+
+	// 	white
+	&--white {
+		color: var(--white);
+
+		h1, h2, h3, h4, h5, h6,
+		.h1, .h2, .h3, .h4, .h5, .h6 {
+			color: var(--white);
+		}
+
+		p, span, blockquote {
+			color: var(--white);
+		}
+
+		ul {
+
+			&:not([class]) {
+				li {
+					color: var(--white);
+					&:before {
+						background: var(--white);
+					}
+				}
+			}
+		}
+
+		ol {
+			&:not([class]) {
+				li {
+					color: var(--white);
+				}
+			}
+		}
+
+		a {
+			color: var(--white);
+
+			&:hover, &:active, &:focus{
+				color: var(--black);
+				text-decoration: none;
+			}
+		}
+	}
+
+	img {
+		width: auto;
+	}
+}
+
+// Helpers
+.overflow--hidden {
+	overflow: hidden;
+}
+
+button {
+	background: none;
+	border: none;
+    padding: 0;
+	outline: none !important;
+}
+
+span, a {
+	display: block;
+}

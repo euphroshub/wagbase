@@ -1,0 +1,19 @@
+@mixin make-button() {
+	background: transparent;
+	border: 1px solid var(--primary);
+	color: var(--primary);
+	display: inline-block;
+	font-size: 15px;
+	letter-spacing: 1.5px;
+	font-weight: var(--font-bold);
+	line-height: 1.2;
+	padding: 13px 35px; 
+	text-transform: uppercase;
+	text-decoration: none;
+	vertical-align: middle;
+	transition: all .35s $ease-in;
+
+	@include mediaq('>XLG') {
+		padding: 18px 43px
+	}
+}

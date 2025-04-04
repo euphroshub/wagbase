@@ -1,0 +1,81 @@
+:root {
+	--grid-columns: #{$grid-columns};
+	--grid-gutter-width: #{$grid-gutter-width};
+	--breakpoint: 100%;
+	--breakpoint-max: #{$src-max};
+
+	@each $breakpoint, $value in $breakpoints {
+		@if $value > $bp-class-generation {
+			@include mediaq('>#{$value}') {
+				--breakpoint: #{$value};
+				--container: calc(var(--breakpoint) - (var(--grid-gutter-width) / 2));
+			}
+		}
+	}
+	
+    // Half container
+	--half-container: calc(((100vw - var(--container)) / 2) + ( var(--grid-gutter-width)));
+}
+
+// **---------------------------------------------------**
+//  Container
+// -------------------------------------------------------
+.container {
+	@include make-container();
+	max-width: var(--container);
+}
+
+// **---------------------------------------------------**
+//  Row
+// -------------------------------------------------------
+.row {
+	@include make-row();
+}
+
+.no-gutters {
+	margin-left: 0;
+	margin-right: 0;
+
+	> .col,
+	> [class*="col-"] {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+// **---------------------------------------------------**
+//  Columns
+// -------------------------------------------------------
+@for $i from 1 through $grid-columns {
+	.col-#{$i} {
+		@include make-col-ready();
+		@include make-col($i, $columns: $grid-columns);
+	}
+}
+
+@each $breakpoint, $value in $breakpoints {
+	.col-#{$breakpoint} {
+		@include make-col-ready();
+	}
+
+	@for $i from 1 through $grid-columns {
+		.col-#{$breakpoint}-#{$i} {
+			@include make-col-ready();
+		}
+	}
+
+	@include mediaq('>#{$value}') {
+		.col-#{$breakpoint} {
+			@include make-col-ready();
+			flex-basis: 0;
+			flex-grow: 1;
+			max-width: 100%;
+		}
+
+		@for $i from 1 through $grid-columns {
+			.col-#{$breakpoint}-#{$i} {
+				@include make-col($i, $columns: $grid-columns);
+			}
+		}
+	}
+}

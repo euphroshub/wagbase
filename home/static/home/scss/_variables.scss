@@ -1,0 +1,139 @@
+// **---------------------------------------------------**
+//  BEGIN Colors
+// -------------------------------------------------------
+$red: #d61313 !default;
+$grey: #4a4545 !default;
+// Add your other colors here.
+
+// **---------------------------------------------------**
+//  Primary Color
+// -------------------------------------------------------
+$primary: $red;
+$primary-lighter: lighten($primary, 16%);
+$primary-light: lighten($primary, 8%);
+$primary-dark: darken($primary, 8%);
+$primary-darker: darken($primary, 16%);
+
+// **---------------------------------------------------**
+// Secondary Color
+// -------------------------------------------------------
+$secondary: $grey;
+$secondary-lighter: lighten($secondary, 16%);
+$secondary-light: lighten($secondary, 8%);
+$secondary-dark: darken($secondary, 8%);
+$secondary-darker: darken($secondary, 16%);
+
+// Add your other color variations here.
+
+// **---------------------------------------------------**
+// Monochrome
+// -------------------------------------------------------
+$white:    #fff !default;
+$gray-100: #F1EFE9 !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6C6C6C !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #2C2822 !default;
+$black:    #000 !default;
+$mono-back:	$gray-100 !default;
+$mono-front: $gray-900 !default;
+
+// **---------------------------------------------------**
+// Specific color
+// -------------------------------------------------------
+$body-text-color: $grey;
+$body-bg-color: $white;
+
+$success: #48C774 !default;
+$info: #3298DC !default;
+$warning: #FFDD57 !default;
+$error: #F14668 !default;
+
+// -------------------------------------------------------
+//  END Colors
+// **---------------------------------------------------**
+
+// **---------------------------------------------------**
+//  BEGIN Typography
+// **---------------------------------------------------**
+// Typography settings
+// -------------------------------------------------------
+$font-base: 16px;
+$font-base-unit: 16;
+$font-line-height: 1.2;
+
+// **---------------------------------------------------**
+// Font families
+// -------------------------------------------------------
+$font-primary: 'Montserrat', sans-serif;
+$font-secondary: 'Heuristica', sans-serif;
+
+// **---------------------------------------------------**
+// Font-weights
+// -------------------------------------------------------
+$font-extra-light: 200;
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semi-bold: 600;
+$font-bold: 700;
+$font-extra-bold: 800;
+$font-black: 900;
+
+// **---------------------------------------------------**
+// Headings
+// -------------------------------------------------------
+$font-heading: $font-secondary;
+$font-heading-weight: $font-regular;
+$font-heading-color: $primary;
+$heading-line-height: 1.08;
+
+$h1: 45px;
+$h2: 40px;
+$h3: 30px;
+$h4: 28px;
+$h5: 24px;
+$h6: 20px;
+// -------------------------------------------------------
+//  END Typography
+// **---------------------------------------------------**
+
+
+// **---------------------------------------------------**
+// Grid
+// -------------------------------------------------------
+$grid-columns: 12;
+$grid-gutter-width: 20px;
+
+// **---------------------------------------------------**
+// Breakpoints
+// -------------------------------------------------------
+$scr-xxs: 320px;
+$scr-xs: 480px;
+$scr-sm: 768px;
+$scr-md: 991px;
+$scr-lg: 1200px;
+$scr-xlg: 1450px;
+$scr-xxlg: 1650px;
+$src-max: 1920px;
+
+// **---------------------------------------------------**
+// Spacing utilities
+// -------------------------------------------------------
+// Spacing responsive
+$spacing-initial: 70px;
+$spacing-ratio: 1.5;
+$spacing-increment: 15px;
+
+// **---------------------------------------------------**
+// Transitions
+// -------------------------------------------------------
+$stand-curve: cubic-bezier(0.4, 0, 0.2, 1);
+$decel-curve: cubic-bezier(0, 0, 0.2, 1);
+$accel-curve: cubic-bezier(0.4, 0, 1, 1);
+$sharp-curve: cubic-bezier(0.4, 0, 0.6, 1);
+$ease-in: cubic-bezier(0.43, 0.045, 0.1, 0.95);

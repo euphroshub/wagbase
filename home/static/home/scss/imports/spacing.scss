@@ -1,0 +1,67 @@
+// **---------------------------------------------------**
+//  Spacing utilities
+// -------------------------------------------------------
+:root {
+	--spacing: #{$spacing-initial};
+	--spacing-responsive: #{$spacing-initial};
+	--spacing-increment: #{$spacing-increment};
+
+	$i: 1;
+	@each $breakpoint, $value in $breakpoints {
+		@if $value > 767 {
+			@include mediaq('>#{$breakpoint}') {
+				--spacing-responsive: calc( var(--spacing) + (var(--spacing-increment) * #{$i}) );
+			}
+			$i: $i + 1;
+		}
+	}
+}
+
+// **---------------------------------------------------**
+//  Spacing responsive 
+//  based on the spacing values set in _variable.scss
+// -------------------------------------------------------
+.Spacing--responsive {
+	padding-top: var(--spacing-responsive);
+	padding-bottom: var(--spacing-responsive);
+
+	&--noTop {
+		padding-top: 0;
+		padding-bottom: var(--spacing-responsive);
+	}
+
+	&--noBottom {
+		padding-top: var(--spacing-responsive);
+		padding-bottom: 0;
+	}
+}
+
+// **---------------------------------------------------**
+//  Margin utilities
+// -------------------------------------------------------
+.Margin--none {
+	margin: 0;
+}
+
+.Margin--top--small {
+    margin-top: 15px;
+}
+
+.Margin--bottom--small {
+    margin-bottom: 15px;
+}
+
+// **---------------------------------------------------**
+//  Padding utilities
+// -------------------------------------------------------
+.Padding--none {
+    padding: 0;
+}
+
+.Padding--top--small {
+    padding-bottom: 15px;
+}
+
+.Padding--bottom--small {
+    padding-bottom: 15px;
+}

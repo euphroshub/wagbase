@@ -1,0 +1,62 @@
+// **---------------------------------------------------**
+//  BlockColor--
+// -------------------------------------------------------
+@each $name, $value in $theme-colors {
+	.BlockColor--#{$name} {
+		background: var(--#{$name});
+	}
+
+	.BlockBodyColor--#{$name} {
+		--body-bg-color: #{variable($name)};
+	}
+}
+
+@each $name, $value in $theme-monochromes {
+	.BlockColor--#{$name} {
+		background: var(--#{$name});
+	}
+
+	.BlockBodyColor--#{$name} {
+		--body-bg-color: #{variable($name)};
+	}
+}
+
+// **---------------------------------------------------**
+//  Text
+// -------------------------------------------------------
+
+@each $name, $value, $code in $theme-colors {
+	.Color--#{$name} {
+		color: var(--#{$name});
+	}
+
+	.BodyColor--#{$name} {
+		--body-text-color: #{variable($name)};
+	}
+
+	.HeadingColor--#{$name} {
+		--body-heading-color: #{variable($name)};
+	}
+
+	.LinkColor--#{$name} {
+		--body-link-color: #{variable($name)};
+	}
+}
+
+@each $name, $value in $theme-monochromes {
+	.Color--#{$name} {
+		color: var(--#{$name});
+	}
+
+	.BodyColor--#{$name} {
+		--body-text-color: #{variable($name)};
+	}
+
+	.HeadingColor--#{$name} {
+		--body-heading-color: #{variable($name)};
+	}
+
+	.LinkColor--#{$name} {
+		--body-link-color: #{variable($name)};
+	}
+}

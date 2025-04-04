@@ -1,0 +1,461 @@
+@import '../variables', '../config', '../imports/mixin.scss';
+
+label, .Label {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.c-FormElement {
+	--form-element-margin: 30px;
+	--form-element-padding: 15px;
+	// @include input-placeholder(var(--font-base), var(--font-base), var(--gray));
+	margin-bottom: var(--form-element-margin);
+	line-height: 1.2;
+	color: var(--primary);
+
+	input {
+		@include input-reset();
+	}
+
+	&--label {
+		font-family: inherit;
+		color: var(--primary);
+		@include fsize(16);
+		margin-bottom: 1.2em;
+	}
+
+	&--focusLine {
+		display: inline-block;
+		position: absolute;
+		top: -1px;
+		right: -1px;
+		bottom: -1px;
+		left: -1px;
+		z-index: 100;
+		pointer-events: none;
+		border: 1px solid;
+		border-color: transparent;
+		transition: border-color .35s $ease-in;
+	}
+
+	/* Input
+	  ========================================================================== */
+	&--bordered {
+		position: relative;
+		background: transparent;
+		outline: 1px solid var(--primary);
+
+		textarea:focus ~ .c-FormElement--focusLine {
+			border-color: var(--black);
+		}
+	}
+
+	&--line {
+		position: relative;
+		background: transparent;
+		@include label-up();
+
+		input {
+			@include input-reset();
+		}
+
+		hr {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			margin: 0;
+			height: 1px;
+			background: var(--primary);
+		}
+
+		.c-FormElement--focusLine {
+			top: calc(100% - 1px);
+			right: auto;
+			bottom: auto;
+			left: 0;
+			border: none;
+			width: 0%;
+			height: 1px;
+			background: var(--black);
+			transition: all .35s $ease-in;
+		}
+
+		// Colored line on focus
+		input:focus ~ .c-FormElement--focusLine {
+			width: 100%;
+		}
+
+		textarea:focus ~ .c-FormElement--focusLine {
+			width: 100%;
+		}
+
+		&--newsletter {
+			&.m-label {
+				label {
+					left: 50%;
+					transform: translate3d(-50%, 0, 0);
+				}
+
+				&.is-up {
+					label {
+						left: 0;
+						transform: translate3d(0, 0, 0);
+					}
+				}
+			}
+		}
+	}
+
+	/* Checkbox / Radio
+		========================================================================== */
+	&--checkbox,
+	&--radio {
+		@include input-checkbox-reset();
+
+		&:first-child ~ & {
+			margin-left: 0.8em;
+		}
+
+		// Checked state 
+		:checked + label {
+			&::before {
+				background: var(--primary);
+				border-color: var(--primary);
+			}
+		}
+	}
+
+	&--radio {
+		label {
+			&:before {
+				border-radius: 40px;
+			}
+		}
+	}
+
+	&--checkboxSvg {
+		display: inline-block;
+
+		input{
+			display: none!important;
+		}
+
+		// checked state
+		input:checked ~ label svg path {
+			stroke-dashoffset: 0;
+		}
+		
+		label {
+			position: relative;
+			display: flex;
+			align-items: center;
+			margin-bottom: 0;
+			cursor: pointer;
+		}
+		
+		input ~ label svg {
+			width: 20px;
+			height: 20px; 
+			border: 1px solid var(--primary);
+			margin-right: 14px;
+		}
+
+		input ~ label svg path {
+			transition: stroke-dashoffset .3s $ease-in;
+			fill: none;
+			stroke: var(--primary);
+			stroke-dasharray: 270;
+			stroke-dashoffset: 270;
+			stroke-width: 5px;
+		}
+	}
+
+	/* Select
+		========================================================================== */
+	&--select {
+		&--line {
+			position: relative;
+
+			svg {
+				position: absolute;
+				top: 50%;
+				right: 0;
+				transform: translate3d(0, -50%, 0);
+				width: 18px;
+				fill: var(--primary);
+				pointer-events: none;
+			}
+
+			select {
+				appearance: none;
+				background: transparent;
+				border-radius: 0;
+				border: none;
+				font-size: var(--font-base);
+				color: var(--primary);
+				padding: var(--form-element-padding) calc(var(--form-element-padding) + 2em) var(--form-element-padding) 0;
+				outline: none;
+				width: 100%;
+
+				&::-ms-expand {
+					display: none;
+				}
+			}
+
+			hr {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				margin: 0;
+				height: 1px;
+				background: var(--primary);
+			}
+
+			.c-FormElement--focusLine {
+				top: calc(100% - 1px);
+				right: auto;
+				bottom: auto;
+				left: 0;
+				border: none;
+				width: 0%;
+				height: 1px;
+				background: var(--black);
+				transition: all .35s $ease-in;
+			}
+
+			// Colored line on focus
+			select:focus ~ .c-FormElement--focusLine {
+				width: 100%;
+			}
+		}
+
+		&--bordered {
+			--padding-right-initial: 35px;
+			--padding-right-value: 18px;
+			--svg-right-value: 20px;
+
+			position: relative;
+			display: inline-block;
+            border: 1px solid var(--primary);
+
+			svg {
+				position: absolute;
+				top: 50%;
+				fill: var(--primary);
+				pointer-events: none;
+				top: 50%;
+				right: var(--svg-right-value);
+				transform: translate3d(0, -50%, 0);
+				width: 14px;
+			}
+			
+
+			select {
+				appearance: none;
+				background: transparent;
+				border-radius: 0;
+				font-family: var(--font-secondary);
+				text-transform: uppercase;
+				font-size: var(--font-base);
+				letter-spacing: 1.6px;
+				color: var(--primary);
+				padding: var(--form-element-padding) calc(var(--form-element-padding) + 2em) var(--form-element-padding) 0;
+				line-height: 1.2;
+				padding: 13px 35px;
+				padding-right: calc(var(--padding-right-value) + var(--padding-right-initial));
+				outline: none;
+
+				&::-ms-expand {
+					display: none;
+				}
+			}
+
+			@include mediaq('>XLG') {
+				--padding-right-initial: 43px;
+				--svg-right-value: 27px;
+
+				select {
+					padding: 18px 43px;
+					padding-right: calc(var(--padding-right-value) + var(--padding-right-initial));
+				}
+			}
+		}
+
+		&--updated {
+			select {
+				color: var(--primary);
+			}
+		}
+	}
+
+	/* File Upload
+		========================================================================== */
+	&--upload {
+		
+		
+		input {
+			@include visually-hidden();
+		}
+		
+		&--line {
+			--label-padding: 20px;
+
+			position: relative;
+			background: transparent;
+
+			&__btn {
+				display: none
+			}
+
+			svg {
+				position: absolute;
+				top: 50%;
+				right: -5px;
+				transform: translate3d(0, -50%, 0) rotate(-90deg);
+				width: 24px;
+				fill: var(--primary);
+				pointer-events: none;
+			}
+
+			input {
+				@include visually-hidden();
+			}
+
+			label {
+				background: none;
+				border: none;
+				margin: 0 !important;
+				color: var(--primary);
+				padding: var(--form-element-padding) var(--label-padding) var(--form-element-padding) 0;
+				width: 100%;
+				min-height: 49.19px;
+			}
+
+			hr {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				margin: 0;
+				height: 1px;
+				background: var(--primary);
+			}
+
+			.c-FormElement--focusLine {
+				top: calc(100% - 1px);
+				right: auto;
+				bottom: auto;
+				left: 0;
+				border: none;
+				width: 0%;
+				height: 1px;
+				background: var(--black);
+				transition: all .35s $ease-in;
+			}
+
+			// Colored line on focus
+			input:focus ~ .c-FormElement--focusLine {
+				width: 100%;
+			}
+		}
+
+		// **---------------------------------------------------**
+		// MEDIA QUERIES
+		
+		@include mediaq('>XS') {
+			&--line {
+				--btn-padding-tb: 12px;
+				--btn-padding-lr: 30px;
+				--label-padding: 205px;
+				svg {
+					display: none;
+				}
+				
+				&__btn {
+					display: block;
+					position: absolute;
+					right: 0;
+					bottom: 0;
+					pointer-events: none;
+					padding: var(--btn-padding-tb) var(--btn-padding-lr);
+					color: var(--white);
+					@include fsize(16);
+					background: var(--primary)
+				}
+			}
+		}
+	}
+
+	/* Textarea
+		========================================================================== */
+	&--bordered {
+		--textarea-min-height: 167px;
+
+		textarea {
+			background: none;
+			border: none;
+			font-size: var(--font-base);
+			color: var(--primary);
+			height: auto;
+			max-width: 100%;
+			min-height: var(--textarea-min-height);
+			padding: var(--form-element-padding);
+			outline: none;
+			line-height: 1.4;
+			width: 100%;
+		}	
+	}
+
+	/* Submit Button
+		========================================================================== */
+	&--submit {
+		[type="submit"] {
+			// when disabled (two class to keep backward compatibility with older Core)
+			&.disabled,
+			&.is-disabled {
+				opacity: .45;
+				pointer-events: none;
+			}
+		}
+
+		span {
+			height: 0;
+			opacity: 0;
+			position: absolute;
+			visibility: hidden;
+			width: 0;
+			z-index: -9999;
+		}
+	}
+
+	&.has-error, &.has-success, &.has-warning {
+		margin-bottom: 10px;
+
+		& + label {
+			text-align: center;
+			margin-bottom: 25px;
+		}
+	}
+
+	// **---------------------------------------------------**
+	// MEDIA QUERIES
+
+	@include mediaq('>SM') {
+	
+		&--bordered {
+			--textarea-min-height: 218px;
+		}
+	}
+	
+	@include mediaq('>XLG') {
+		line-height: 1.6;
+
+		&--bordered {
+			textarea {
+				line-height: inherit;
+			}	
+		}
+	}
+}

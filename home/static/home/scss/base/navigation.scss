@@ -1,0 +1,67 @@
+// **---------------------------------------------------**
+//  BEGIN Navigation
+// -------------------------------------------------------
+
+.c-Nav {
+    overflow-x: hidden;
+    
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 8px;
+        position: relative;
+        
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
+            transform: translate3d(-50%, 0, 0);
+            width: 150vw;
+            height: 1px;
+            background: $secondary;
+        }
+
+        &--logo {
+            img {
+                width: 150px;
+                height: auto;
+            }
+        }
+
+        &--list {
+            &__mainNav {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    padding: 0;
+                    margin: 0;
+                    margin-right: 20px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    span {
+                        display: block;
+
+                        a {
+                            @include fsize(10);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// -------------------------------------------------------
+//  END Navigation
+// **---------------------------------------------------**

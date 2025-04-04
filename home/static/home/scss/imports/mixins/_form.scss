@@ -1,0 +1,124 @@
+@mixin input-placeholder($font-size, $line-height, $color) {
+	::-webkit-input-placeholder {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	:-moz-placeholder {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	::-moz-placeholder {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	:-ms-input-placeholder {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	::-ms-input-placeholder {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+
+	:placeholder-shown {
+		color: $color;
+		font-size: $font-size;
+		line-height: $line-height;
+	}
+}
+
+@mixin input-reset() {
+	--input-padding: 15px;
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background: none;
+	border: none;
+	display: block;
+	padding: var(--input-padding) var(--input-padding) var(--input-padding) 0;
+	color: var(--primary);
+	outline: none;
+	width: 100%;
+}
+
+@mixin input-checkbox-reset() {
+	display: inline-block;
+	line-height: 1.2;
+
+	input{
+		display: none!important;
+	}
+
+	label{
+		position: relative;
+		padding-left: 35px;
+		margin-bottom: 0;
+		cursor: pointer;
+
+		&:before{
+			content: '';
+			left: 0;
+			position: absolute;
+			top: 0;
+			border-radius: 2px;
+			border: 1px solid var(--primary);
+			background: transparent;
+			width: 20px;
+			height: 20px; 
+		} 
+	}
+}
+
+@mixin label-up() {
+	&.m-label {
+		--label-padding: 15px;
+
+		position: relative;
+
+		label {
+			position: absolute;
+			top: var(--label-padding);
+			left: 0;
+			@include fsize(16);
+			transition: all 0.2s $decel-curve;
+			pointer-events: none;
+			margin: 0;
+		}
+
+		&.is-up {
+			label {
+				@include fsize(10);
+				top: calc((var(--label-padding) + 5px) * -1);
+			}
+		}
+
+		&.is-white {
+			&.is-up {
+				label {
+					color: var(--white);
+				}
+			}
+		}
+	}
+}
+
+@mixin visually-hidden() {
+	position: absolute;
+	margin: -1px;
+	padding: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+}
