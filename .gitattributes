@@ -1,0 +1,3 @@
+*.scss linguist-vendorer
+*.css linguist-vendored
+wagbase/wagbase/static/**/*.scss linguist-vendored
