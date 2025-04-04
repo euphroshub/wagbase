@@ -1,3 +1,33 @@
-*.scss linguist-vendorer
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Python files
+*.py linguist-detectable=true
+*.py linguist-language=Python
+
+# SCSS files
+*.scss linguist-detectable=true
+*.scss linguist-language=SCSS
+
+# JavaScript files
+*.js linguist-detectable=true
+*.js linguist-language=JavaScript
+
+# HTML templates
+*.html linguist-detectable=true
+*.html linguist-language=HTML
+
+# Markdown files
+*.md linguist-detectable=true
+*.md linguist-language=Markdown
+
+# Configuration files
+*.json linguist-detectable=false
+*.yml linguist-detectable=false
+*.yaml linguist-detectable=false
+*.txt linguist-detectable=false
+*.gitattributes linguist-detectable=false
+*.gitignore linguist-detectable=false
+
 *.css linguist-vendored
 wagbase/wagbase/static/**/*.scss linguist-vendored
