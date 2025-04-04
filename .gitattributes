@@ -5,9 +5,9 @@
 *.py linguist-detectable=true
 *.py linguist-language=Python
 
-# SCSS files
-*.scss linguist-detectable=true
-*.scss linguist-language=SCSS
+# SCSS files - mark as vendored to exclude from language stats
+*.scss linguist-vendored
+**/*.scss linguist-vendored
 
 # JavaScript files
 *.js linguist-detectable=true
@@ -29,5 +29,6 @@
 *.gitattributes linguist-detectable=false
 *.gitignore linguist-detectable=false
 
+# CSS files
 *.css linguist-vendored
 wagbase/wagbase/static/**/*.scss linguist-vendored
