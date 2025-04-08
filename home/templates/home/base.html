@@ -11,16 +11,30 @@
     {% endcompress %}
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <a href="/" class="logo">Wagtail Site</a>
-                <button class="menu-toggle">Menu</button>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/blog/">Blog</a></li>
-                    <li><a href="/styleguide/">Style Guide</a></li>
-                </ul>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__container">
+                <a href="/" class="nav__logo">Wagtail Site</a>
+                
+                <button class="nav__toggle" aria-label="Toggle Menu">
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                    <span class="nav__toggle-bar"></span>
+                </button>
+
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="/" class="nav__link">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/blog/" class="nav__link">Blog</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="/styleguide/" class="nav__link">Style Guide</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -36,10 +50,7 @@
     </footer>
 
     {% compress js %}
-    <script src="{% static 'home/js/utils/animations.js' %}"></script>
     <script src="{% static 'home/js/components/navigation.js' %}"></script>
-    <script src="{% static 'home/js/modules/slider.js' %}"></script>
-    <script src="{% static 'home/js/main.js' %}"></script>
     {% endcompress %}
 </body>
 </html> 

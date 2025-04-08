@@ -1,64 +1,54 @@
-// Import components
-import './components/navigation.js';
-import './utils/animations.js';
-import './modules/slider.js';
+import Navigation from './components/navigation.js';
 
-// Initialize components when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize navigation
-    if (typeof Navigation !== 'undefined') {
-        Navigation.init();
-    }
-
-    // Initialize sliders
-    const sliders = document.querySelectorAll('.slider');
-    sliders.forEach(slider => {
-        if (typeof Slider !== 'undefined') {
-            Slider.init(slider);
-        }
-    });
-
-    // Add active class to current navigation item
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('nav a');
+// Main JavaScript file
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Main: DOM Content Loaded, initializing components...');
     
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
+    try {
+        // Initialize navigation
+        if (typeof Navigation !== 'undefined') {
+            Navigation.init();
+        } else {
+            console.error('Main: Navigation component not found!');
         }
-    });
-
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
-
-    // Form validation
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('error');
-                } else {
-                    field.classList.remove('error');
-                }
-            });
-
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields');
+        
+        // Initialize sliders if they exist
+        const sliders = document.querySelectorAll('.c-Slider');
+        if (sliders.length > 0) {
+            console.log('Main: Found sliders, initializing...');
+            // Initialize your slider component here
+        }
+        
+        // Initialize form validation if forms exist
+        const forms = document.querySelectorAll('form');
+        if (forms.length > 0) {
+            console.log('Main: Found forms, initializing validation...');
+            // Initialize your form validation here
+        }
+        
+        // Add active class to current navigation item
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.c-Nav__link');
+        
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (linkPath === currentPath) {
+                link.classList.add('is-active');
+                console.log('Main: Added active class to:', linkPath);
             }
         });
+        
+        console.log('Main: All components initialized successfully');
+    } catch (error) {
+        console.error('Main: Error during initialization:', error);
+    }
+});
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new Navigation();
     });
-}); 
+} else {
+    new Navigation();
+} 

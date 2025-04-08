@@ -1,38 +1,81 @@
-// Navigation Component
-const Navigation = {
-    init() {
-        this.mobileMenu = document.querySelector('.menu-toggle');
-        this.navMenu = document.querySelector('nav ul');
-        this.bindEvents();
-    },
+// Navigation Module
+const Navigation = (() => {
+    // Private variables
+    let navToggle;
+    let navMenu;
+    let body;
 
-    bindEvents() {
-        if (this.mobileMenu) {
-            this.mobileMenu.addEventListener('click', () => this.toggleMobileMenu());
+    // Private methods
+    const init = () => {
+        // Cache DOM elements
+        navToggle = document.querySelector('.nav__toggle');
+        navMenu = document.querySelector('.nav__menu');
+        body = document.body;
+
+        // Check if required elements exist
+        if (!navToggle || !navMenu) {
+            console.error('Navigation: Required elements not found!');
+            return;
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav') && this.navMenu.classList.contains('active')) {
-                this.toggleMobileMenu();
-            }
-        });
+        // Bind events
+        bindEvents();
+    };
 
-        // Handle window resize
+    const bindEvents = () => {
+        // Toggle button click
+        navToggle.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', handleClickOutside);
+
+        // Close menu on window resize above mobile breakpoint
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && this.navMenu.classList.contains('active')) {
-                this.toggleMobileMenu();
-            }
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    closeMenu();
+                }
+            }, 250);
         });
-    },
+    };
 
-    toggleMobileMenu() {
-        this.navMenu.classList.toggle('active');
-        this.mobileMenu.classList.toggle('active');
-    }
-};
+    const toggleMenu = () => {
+        if (navMenu.classList.contains('is-active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    };
+
+    const openMenu = () => {
+        navMenu.classList.add('is-active');
+        navToggle.classList.add('is-active');
+        body.classList.add('is-nav-open');
+    };
+
+    const closeMenu = () => {
+        navMenu.classList.remove('is-active');
+        navToggle.classList.remove('is-active');
+        body.classList.remove('is-nav-open');
+    };
+
+    const handleClickOutside = (e) => {
+        if (!e.target.closest('.nav')) {
+            closeMenu();
+        }
+    };
+
+    // Public API
+    return {
+        init
+    };
+})();
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', Navigation.init);
+} else {
     Navigation.init();
-}); 
+} 

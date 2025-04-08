@@ -1,14 +1,14 @@
 // **---------------------------------------------------**
 //  BEGIN Colors
 // -------------------------------------------------------
-$red: #d61313 !default;
-$grey: #4a4545 !default;
+$orange: #F2A32C !default;
+$grey: #2f2e2e !default;
 // Add your other colors here.
 
 // **---------------------------------------------------**
 //  Primary Color
 // -------------------------------------------------------
-$primary: $red;
+$primary: $orange;
 $primary-lighter: lighten($primary, 16%);
 $primary-light: lighten($primary, 8%);
 $primary-dark: darken($primary, 8%);
