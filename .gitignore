@@ -21,6 +21,9 @@ db.sqlite3-journal
 # Wagtail-specific
 media/
 staticfiles/
+static/CACHE/
+static/cache/
+static/compiled/
 
 # Node modules (if using frontend build tools)
 node_modules/
